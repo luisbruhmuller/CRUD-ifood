@@ -126,22 +126,16 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
                             <td><?php echo $pedido["valor"] ?></td>
                             <td><?php echo $pedido["status"] ?></td>
                             <td>
-                                <a href="public/editar_pedido.php?id=<?php echo $pedido["id"] ?>">Editar</a>
-                                <a href="public/excluir_pedido.php?id=<?php echo $pedido["id"] ?>">Excluir</a>
+                                <a href="public/pedido/editar_pedido.php?id=<?php echo $pedido["id"] ?>">Editar</a>
+                                <a href="public/pedido/excluir_pedido.php?id=<?php echo $pedido["id"] ?>">Excluir</a>
                             </td>
                         </tr>
                     <?php } ?>
                 </table>
             </div>
-            <td> <?php
-            $clientes = mysqli_query($conexao, "SELECT * FROM clientes");
-            while ($cliente = mysqli_fetch_assoc($clientes)) {
-                echo "<option value='" . $cliente['id'] . "'>" . $cliente['nome'] . "</option>";
-            }
-            ?></td>
             <td>
                 <a href="public/editar_pedido.php?id=<?php echo $pedidos["id"] ?>">Editar</a>
-                <a href="public/excluir_pedido.php?id=<?php echo $pedidos["id"] ?>">Excluir</a>
+                <a href="public/pedido/excluir_pedido.php?id=<?php echo $pedidos["id"] ?>">Excluir</a>
             </td>
             </tr>
             </table>
