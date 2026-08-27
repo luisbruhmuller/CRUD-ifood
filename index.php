@@ -27,11 +27,8 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
         <form action="public/pedido/criar_pedido.php" method="POST">
 
             <br>
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome">
-            <br>
             <label for="valor">Preço:</label>
-            <input type="number" name="valor" step="0.01">
+            <input type="number" name="valor" step="0.01" min="0.01" required>
             <br>
             <label for="status">Status:</label>
             <select name="status">
@@ -120,17 +117,17 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
                         <th>Status</th>
                         <th>Ações</th>
                     </tr>
-                    <?php while ($pedidos = mysqli_fetch_assoc($pedidos)) { ?>
+                    <?php while ($pedido = mysqli_fetch_assoc($pedidos)) { ?>
                         <tr>
-                            <td><?php echo $pedidos["id"] ?></td>
-                            <td><?php echo $pedidos["cliente_id"] ?></td>
-                            <td><?php echo $pedidos["restaurante_id"] ?></td>
-                            <td><?php echo $pedidos["data_pedido"] ?></td>
-                            <td><?php echo $pedidos["valor"] ?></td>
-                            <td><?php echo $pedidos["status"] ?></td>
+                            <td><?php echo $pedido["id"] ?></td>
+                            <td><?php echo $pedido["cliente_id"] ?></td>
+                            <td><?php echo $pedido["restaurante_id"] ?></td>
+                            <td><?php echo $pedido["data_pedido"] ?></td>
+                            <td><?php echo $pedido["valor"] ?></td>
+                            <td><?php echo $pedido["status"] ?></td>
                             <td>
-                                <a href="public/editar_pedido.php?id=<?php echo $pedidos["id"] ?>">Editar</a>
-                                <a href="public/excluir_pedido.php?id=<?php echo $pedidos["id"] ?>">Excluir</a>
+                                <a href="public/editar_pedido.php?id=<?php echo $pedido["id"] ?>">Editar</a>
+                                <a href="public/excluir_pedido.php?id=<?php echo $pedido["id"] ?>">Excluir</a>
                             </td>
                         </tr>
                     <?php } ?>
