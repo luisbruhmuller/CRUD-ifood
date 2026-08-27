@@ -132,46 +132,38 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
                         </tr>
                     <?php } ?>
                 </table>
-            </div>
-            <td>
-                <a href="public/editar_pedido.php?id=<?php echo $pedidos["id"] ?>">Editar</a>
-                <a href="public/pedido/excluir_pedido.php?id=<?php echo $pedidos["id"] ?>">Excluir</a>
-            </td>
-            </tr>
-            </table>
-            </div>
-            <?php
-            $cliente = mysqli_query($conexao, "SELECT * FROM clientes");
-            ?>
-            <?php while ($clientes = mysqli_fetch_assoc($cliente)) { ?>
-
                 <div>
-                    <h2>Donos Cadastrados</h2>
+                    <h2>Clientes Cadastrados</h2>
                     <table>
                         <tr>
                             <th>ID</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Telefone</th>
-                            <th>Ações</th>
+                            <th>Cliente</th>
+                            <th>email</th>
+                            <th>telefone</th>
+                            <th>endereco</th>
+
                         </tr>
-                        <tr>
-                            <td><?php echo $clientes["id"] ?></td>
-                            <td><?php echo $clientes["nome"] ?></td>
-                            <td><?php echo $clientes["email"] ?></td>
-                            <td><?php echo $clientes["telefone"] ?></td>
-                            <td>
-                                <a href="public/editar_cliente.php?id=<?php echo $clientes["id"] ?>">Editar</a>
-                                <a href="public/excluir_cliente.php?id=<?php echo $clientes["id"] ?>">Excluir</a>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </table>
-            </div>
+                        <?php
+                        $cliente = mysqli_query($conexao, "SELECT * FROM clientes");
+                        while ($clientes = mysqli_fetch_assoc($cliente)) {
+                            ?>
+                            <tr>
+                                <td><?php echo $clientes["id"] ?></td>
+                                <td><?php echo $clientes["nome"] ?></td>
+                                <td><?php echo $clientes["email"] ?></td>
+                                <td><?php echo $clientes["telefone"] ?></td>
+                                <td><?php echo $clientes["endereco"] ?></td>
+                                <td>
+                                    <a href="public/pedido/editar_pedido.php?id=<?php echo $pedido["id"] ?>">Editar</a>
+                                    <a href="public/pedido/excluir_pedido.php?id=<?php echo $pedido["id"] ?>">Excluir</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                    <div>
 
     </main>
     <footer>
-
     </footer>
 
 
