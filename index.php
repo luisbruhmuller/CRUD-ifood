@@ -24,14 +24,14 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
     </header>
     <main>
         <h2>Adicione um novo pedido</h2>
-        <form action="public/cadastrar_pedido.php" method="POST">
+        <form action="public/pedido/criar_pedido.php" method="POST">
 
             <br>
             <label for="nome">Nome:</label>
             <input type="text" name="nome">
             <br>
-            <label for="idade">Preço:</label>
-            <input type="number" name="idade" step="0.01">
+            <label for="valor">Preço:</label>
+            <input type="number" name="valor" step="0.01">
             <br>
             <label for="status">Status:</label>
             <select name="status">
@@ -44,8 +44,8 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
             <select name="cliente_id">
                 <?php
                 $cliente = mysqli_query($conexao, "SELECT * FROM clientes");
-                while ($cliente = mysqli_fetch_assoc($cliente)) {
-                    echo "<option value='" . $cliente['id'] . "'>" . $cliente['nome'] . "</option>";
+                while ($clientes = mysqli_fetch_assoc($cliente)) {
+                    echo "<option value='" . $clientes['id'] . "'>" . $clientes['nome'] . "</option>";
                 }
                 ?>
             </select>
@@ -54,8 +54,8 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
             <select name="restaurante_id">
                 <?php
                 $restaurante = mysqli_query($conexao, "SELECT * FROM restaurantes");
-                while ($restaurante = mysqli_fetch_assoc($restaurante)) {
-                    echo "<option value='" . $restaurante['id'] . "'>" . $restaurante['nome'] . "</option>";
+                while ($restaurantes = mysqli_fetch_assoc($restaurante)) {
+                    echo "<option value='" . $restaurantes['id'] . "'>" . $restaurantes['nome'] . "</option>";
                 }
                 ?>
             </select>
@@ -63,7 +63,7 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
             <button type="submit">Cadastrar</button>
         </form>
         <h2>Adicione um novo cliente!</h2>
-        <form action="public/cadastrar_cliente.php" method="POST">
+        <form action="public/cliente/criar_cliente.php" method="POST">
             <label for="nome">Nome:</label>
             <input type="text" name="nome">
             <br>
@@ -80,7 +80,7 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
         </form>
         </form>
         <h2>Adicione um novo restaurante!</h2>
-        <form action="public/cadastrar_restaurante.php" method="POST">
+        <form action="public/restaurante/criar_restaurante.php" method="POST">
             <label for="nome">Nome:</label>
             <input type="text" name="nome">
             <br>
@@ -136,18 +136,18 @@ $pedidos = mysqli_query($conexao, "SELECT * FROM pedidos");
                     <?php } ?>
                 </table>
             </div>
-                            <td> <?php
-                            $clientes = mysqli_query($conexao, "SELECT * FROM clientes");
-                            while ($cliente = mysqli_fetch_assoc($clientes)) {
-                                echo "<option value='" . $cliente['id'] . "'>" . $cliente['nome'] . "</option>";
-                            }
-                            ?></td>
-                            <td>
-                                <a href="public/editar_pedido.php?id=<?php echo $pedidos["id"] ?>">Editar</a>
-                                <a href="public/excluir_pedido.php?id=<?php echo $pedidos["id"] ?>">Excluir</a>
-                            </td>
-                        </tr>
-                </table>
+            <td> <?php
+            $clientes = mysqli_query($conexao, "SELECT * FROM clientes");
+            while ($cliente = mysqli_fetch_assoc($clientes)) {
+                echo "<option value='" . $cliente['id'] . "'>" . $cliente['nome'] . "</option>";
+            }
+            ?></td>
+            <td>
+                <a href="public/editar_pedido.php?id=<?php echo $pedidos["id"] ?>">Editar</a>
+                <a href="public/excluir_pedido.php?id=<?php echo $pedidos["id"] ?>">Excluir</a>
+            </td>
+            </tr>
+            </table>
             </div>
             <?php
             $cliente = mysqli_query($conexao, "SELECT * FROM clientes");
